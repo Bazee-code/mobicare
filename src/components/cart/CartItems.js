@@ -12,7 +12,7 @@ const Button = styled.button`
 	color : #fff;
 
 	&:hover{
-		background-color : #f0ad4e;
+		background-color : #ffff00;
 		color : #420420;
 	}
 `

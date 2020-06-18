@@ -8,7 +8,7 @@ const H3 = styled.h3`
 const Header = ()=>{
 	return (
 		<div>
-			<H3 className="header text-center">Our Products</H3>
+			<H3 className="header text-center text-warning">Our Products</H3>
 		</div>
 	)
 };

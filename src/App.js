@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 import './App.css';
 
 // local
@@ -14,6 +14,7 @@ const App = ()=>{
         <Route exact path={["/","/dashboard"]} component={Home} />
         <Route exact path="/details" component={ProductDetails} />
         <Route path ="/cart" component={Cart}/> 
+        <Redirect to="/" />
       </Switch>    
       </Router>
     </React.Fragment>

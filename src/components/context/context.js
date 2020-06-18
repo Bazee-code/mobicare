@@ -79,7 +79,7 @@ class ProductsProvider extends React.Component {
 			}
 		},()=>{
 			this.addTotals();
-			// this.addCount();
+			this.addCount();
 		});
 
 	};
@@ -105,7 +105,7 @@ class ProductsProvider extends React.Component {
 		 						products : [...tempProducts]}
 		 	},()=>{
 		 		this.addTotals();
-		 		// this.addCount();
+		 		this.addCount();
 		 	})
 
 	 	};
@@ -125,7 +125,7 @@ class ProductsProvider extends React.Component {
 			return {cart : [...tempCart]};
 		},()=>{
 			this.addTotals();
-			// this.cartCount();
+			this.addCount();
 		}) 
 
 	};
@@ -140,12 +140,13 @@ class ProductsProvider extends React.Component {
 		if(item.count > 0){
 			item.count -= 1;
 			item.total = item.price * item.count;
-		};
+		}
 
 		this.setState(()=>{
 				return {cart : [...tempCart]}
 				},()=>{
 					this.addTotals();
+					this.addCount();
 				});
 
 	};
@@ -173,18 +174,19 @@ class ProductsProvider extends React.Component {
 			cart : []
 		},()=>{
 			this.addTotals();
+			this.addCount();
 		})
 	};
 
-	// addCount = ()=>{
-	// 	let tempCount = 0;
-	// 	let tempCart = [...this.state.cart];
-	// 	tempCart.map(item=>tempCount += item.count);
+	addCount = ()=>{
+		let tempCount = 0;
+		let tempCart = [...this.state.cart];
+		tempCart.map(item=>tempCount += item.count);
 
-	// 	this.setState({
-	// 		cartCount : tempCount
-	// 	})
-	// };
+		this.setState({
+			cartCount : tempCount
+		})
+	};
 
 	render() {
 	
