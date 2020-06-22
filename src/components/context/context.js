@@ -17,12 +17,15 @@ class ProductsProvider extends React.Component {
 			cartSubTotal : 0,
 			cartTotal : 0,
 			cartTax : 0,
-			cartCount : 0
+			cartCount : 0,
+			sortedProducts : [],
+			userInput : ""
 		};
 	};
 
 	componentDidMount(){
 		this.setProducts();	
+		this.filterProducts();
 	};
 
 	// we want to pass our products as references to our array
@@ -36,6 +39,8 @@ class ProductsProvider extends React.Component {
 
 		this.setState(()=>{
 			return {products : tempProducts}
+		},(title)=>{
+			this.filterProducts(title);
 		})
 	};
 
@@ -188,6 +193,29 @@ class ProductsProvider extends React.Component {
 		})
 	};
 
+	// // search bar configuration
+	handleChange = (e)=>{
+		// e.persist(); //makes a copy of our value cause react recycles our event
+		// e.preventDefault();
+		this.setState(()=>{
+			return {[e.target.name] : e.target.value,
+								userInput : e.target.value }
+		});
+	};
+
+	// we want to filter using the products title
+	filterProducts = (title)=>{
+		let tempProducts = [...this.state.products];
+		let {userInput} = this.state;
+		console.log(userInput);
+
+		tempProducts.filter(item=>item.title === userInput);
+
+		this.setState({
+			products : [...tempProducts]
+		})
+	};
+
 	render() {
 	
 		return (
@@ -200,7 +228,9 @@ class ProductsProvider extends React.Component {
 				decrement : this.decrement,
 				addTotals : this.addTotals,
 				clearCart : this.clearCart,
-				addCount : this.addCount
+				addCount : this.addCount,
+				handleChange : this.handleChange,
+				filterProducts : this.filterProducts
 			}}>
 				{this.props.children}
 			</ProductsContext.Provider>
